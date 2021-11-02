@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'app/base.html' %}
+{% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+</head>
+<body>
+    
+
+
+
+
+
+
+
+{% block livesale %}
+<!-- Live Sale Section -->
+<div class="container">
+  <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
+    <h1>FIND YOUR CATEGORY <img src="https://img.icons8.com/ios/50/000000/restaurant-pickup.png"/></h1>
+    <p></p>
+    <span>Never have a bad meal</span>
+    <small class="fw-lighter">Delivering happiness at your doorstap!</small>
+  </div>
+</div> <br><br><br><br><br><br>
+<!-- End Live Sale Section -->
+{% endblock livesale %}
+
+
+{% block main-content %}
+
+<div class="zip">
+  <nav class="navbar navbar-light">
+    <form class="form-inline" method="post" action="/zsearch">
+      {% csrf_token %}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><img src="https://img.icons8.com/external-those-icons-fill-those-icons/24/fa314a/external-location-maps-and-locations-those-icons-fill-those-icons-6.png"/></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Area Pincode" aria-label="Username" aria-describedby="basic-addon1" name="query" id="query">
+      </div>
+    </form>
+  </nav>
+</div>
+    
+    {% for f in Fine_Dining %}
+    
+
+    <div class="gallery">
+    <a href="{% url 'fine' %}" type="button">
+     
+      <img src="{{ f.Restauranttype_image.url }}" alt="Cinque Terre">
+      
+    <h4>
+      <font color="black" font-family="Times New Roman">{{ f.Restaurant_type }}</font></h4>
+  </a>
+  </div>
+  {% endfor %}
+ 
+
+
+
+    
+    
+{% for c in Casual_Dining %}
+<div class="gallery">
+  <a href="{% url 'casual' %}" type="button">
+    
+      <img src="{{ c.Restauranttype_image.url }}" alt="Cinque Terre">
+    
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ c.Restaurant_type }}</font></h4>
+    </a>
+    
+     
+    </div>
+    {% endfor %}
+
+
+
+
+  
+   
+    
+    {% for co in Contemporary_Casual %}
+
+    <div class="gallery">
+      <a href="{% url 'cont' %}" type="button">
+        
+      <img src="{{ co.Restauranttype_image.url }}" alt="Cinque Terre">
+  
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ co.Restaurant_type }}</font></h4>
+    </a>
+    
+      
+    </div>
+    {% endfor %}
+
+
+
+   
+    
+{% for fs in Family_Style %}
+
+<div class="gallery">
+  <a href="{% url 'family' %}" type="button">
+    
+      <img src="{{ fs.Restauranttype_image.url }}" alt="Cinque Terre">
+    
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ fs.Restaurant_type }}</font></h4>
+    </a>
+    
+      
+    </div>
+    {% endfor %}
+
+    
+    
+{% for fc in Fast_Casual %}
+
+<div class="gallery">
+  <a href="{% url 'fast' %}" type="button">
+       
+      <img src="{{ fc.Restauranttype_image.url }}" alt="Cinque Terre">
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ fc.Restaurant_type }}</font></h4>
+    </a>
+    
+     
+    </div>
+    {% endfor %}
+    
+    
+{% for ff in Fast_Food %}
+
+<div class="gallery">
+  <a href="{% url 'fastfood' %}" type="button">
+    
+      <img src="{{ ff.Restauranttype_image.url }}" alt="Cinque Terre">
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ ff.Restaurant_type }}</font></h4>
+    </a>
+    
+     
+    </div>
+    {% endfor %}
+  
+    
+{% for c in Cafe %}
+
+<div class="gallery">
+  <a href="{% url 'cafe' %}" type="button">
+    
+      <img src="{{ c.Restauranttype_image.url }}" alt="Cinque Terre">
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ c.Restaurant_type }}</font></h4>
+    </a>
+    
+     
+    </div>
+    {% endfor %}
+ 
+    
+    
+{% for b in Buffet %}
+
+<div class="gallery">
+  <a href="{% url 'buffet' %}" type="button">
+     
+      <img src="{{ b.Restauranttype_image.url }}" alt="Cinque Terre">
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ b.Restaurant_type }}</font></h4>
+    </a>
+    
+    
+    </div>
+    {% endfor %}
+ 
+    
+{% for ft in Food_Trucks_and_Concession_Stands %}
+
+<div class="gallery">
+  <a href="{% url 'truck' %}" type="button">
+    
+      <img src="{{ ft.Restauranttype_image.url }}" alt="Cinque Terre">
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ ft.Restaurant_type }}</font></h4>
+    </a>
+    
+     
+    </div>
+    {% endfor %}
+  
+    
+    
+{% for p in Pop_Up_Restaurant %}
+
+<div class="gallery">
+  <a href="{% url 'pop' %}" type="button">
+    
+    <img src="{{ p.Restauranttype_image.url }}" alt="Cinque Terre">
+      <h4>
+        <font color="black" font-family="Times New Roman">{{ p.Restaurant_type }}</font></h4>
+    </a>
+    
+     
+    </div>
+    {% endfor %}
+  
+{% endblock main-content %} 
+
+
+
+</body>
+</html>

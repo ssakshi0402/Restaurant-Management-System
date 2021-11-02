@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'app/base.html' %}
+{% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    
+
+
+
+
+
+
+
+{% block livesale %}
+<!-- Live Sale Section -->
+<div class="container">
+  <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
+    <h1><img src="https://img.icons8.com/dotty/64/000000/meal.png"/>&nbsp;&nbsp;ORDER NOW ON FOOD BOX</h1>
+    <span>Never have a bad meal</span>
+    <small class="fw-lighter">Delivering happiness at your doorstap!</small>
+  </div>
+</div> <br><br><br><br><br><br>
+<!-- End Live Sale Section -->
+{% endblock livesale %}
+
+{% block main-content %}
+<div class="zip">
+  <nav class="navbar navbar-light">
+    <form class="form-inline" method="post" action="/zfine">
+      {% csrf_token %}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><img src="https://img.icons8.com/external-those-icons-fill-those-icons/24/fa314a/external-location-maps-and-locations-those-icons-fill-those-icons-6.png"/></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Area Pincode" aria-label="Username" aria-describedby="basic-addon1" name="query" id="query"pattern="[0-9]{6}" title="Six digit zip code" >
+      
+      </div>
+    </form>
+  </nav>
+</div>
+    {% for products in Fine_Dining %}
+    
+
+    <div class="gallery">
+      <a href="{% url 'productdetail' products.id %}" type="button">
+        
+      <img src="{{ products.product_image.url }}" alt="Cinque Terre" width="300" height="300">
+    </a>
+    <div class="desc"><h4>{{ products.title }}<br>{{ products.Restro_name }}<br>
+        <del>&#8377; {{ products.selling_price }}</del>
+        &nbsp;&nbsp;
+        &#8377; {{ products.disc_price }}</h4>
+        
+    </div>
+  </div>
+  {% endfor %}
+  
+
+
+  
+    
+
+
+
+{% endblock main-content %} 
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<meta http-equiv="refresh" content="4" />
+<div class="container my-5">
+ <div class="row">
+  <h2 class="text-center mb-5">Checkout</h2>
+  <div class="col-sm-8">
+  <div class="card">
+   <div class="card-body">
+    <h3>Cart</h3>
+    {% for Cart in carts %}
+    <hr>
+    <div class="row">
+     <div class="col-sm-3 text-center align-self-center"><img src="{{ Cart.product.product_image.url }}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
+     <!--{{Cart.product.id}}-->
+     <div class="col-sm-9">
+      <div>
+       <h5>{{Cart.product.title}}</h5>
+       <p class="mb-2 text-muted small">{{Cart.product.description}}</p>
+       <div class="my-3">
+        <label for="quantity">Quantity:</label>
+        <a class="minus-cart btn" pid="{{Cart.product.id}}"><i class="fas fa-minus-square fa-lg"></i></a>
+          <span id="quantity">{{Cart.quantity}}</span>
+        <a class="plus-cart btn" pid="{{Cart.product.id}}"><i class="fas fa-plus-square fa-lg"></i></a>
+       </div> 
+       <div class="d-flex justify-content-between">
+        <a href="#" class="btn btn-sm btn-secondary mr-3 remove-cart" pid="{{Cart.product.id}}">Remove item </a>
+        <p class="mb-0"><span><strong>&#8377;{{ Cart.product.disc_price }}</strong></span></p>
+       </div>
+      </div>
+     </div>
+    </div>
+    {% endfor %}
+    <hr class="text-muted">
+    <!--div class="row my-5">
+     <div class="col-sm-3 text-center align-self-center"> <img src="{% static 'app/images/product/2.jpg'%}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div>
+     <div class="col-sm-9"> 
+      <div>
+       <h5>CAFFÈ LATTE</h5>
+       <p class="mb-2 text-muted small">Description: A tall, mild 'milk coffee' (about 150-300 ml). An espresso with steamed milk and only a little milk foam poured over it. Serve in a latte glass or a coffee cup. Flavoured syrup can be added. </p>
+       <div class="my-3">
+        <label for="quantity">Quantity:</label>
+        <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a>
+          <span id="quantity">2</span>
+        <a class="plus-cart btn"><i class="fas fa-plus-square fa-lg"></i></a>
+       </div> 
+       <div class="d-flex justify-content-between">
+        <a href="#" class="btn btn-sm btn-secondary mr-3">Remove item </a>        
+        <p class="mb-0"><span><strong>Rs. 320.00</strong></span></p>
+       </div>
+      </div>
+     </div>
+    </div>-->
+   </div>
+   </div>
+  </div>
+
+  <div class="col-sm-4">
+   <div class="card">
+    <div class="card-body">
+      <h3>Summary</h3>
+      <ul class="list-group">
+       <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">Subtotal<span>&#8377;<span id="amount">{{amount}}</span></span></li>
+       {% if  amount <= 200 %}
+       <li class="list-group-item d-flex justify-content-between align-items-center px-0">Delivery Charge<span>&#8377;<span id="shipping">{{shipping}}</span></span></li>
+       {% else %}
+       <li class="list-group-item d-flex justify-content-between align-items-center px-0">Delivery Charge<span>&#8377;<span id="wshiping">{{wshiping}}</span></span></li>
+       {% endif %}
+       <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+        <div>
+           <strong>Grand Total</strong> <small>(Including All taxes)</small>
+         </div>
+         <span><strong>&#8377;<strong id="totalamount">{{totalamount}}</strong></strong></span>
+       </li>
+      </ul>
+      <div class="d-grid"><a href="{% url 'checkout' %}" class="btn btn-dark">Place Order</a></div>
+    </div>
+   </div>
+   {% if  amount <= 200 %}
+   <br><h4><h4 id="fix">Add items worth &#8377;{{fix}} more for FREE delivery</h4></h4>
+   {% endif %}
+  </div>
+  
+ </div>
+</div>
+
+<!--<div class="container">
+ <div class="row">
+  <div class="col-sm-8">
+   <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">We accept</h5>
+      <img src="{% static 'app/images/payment.png' %}" alt="" class="img-fluid">
+    </div>
+  </div>
+  </div>
+ </div>
+</div>-->
+{% endblock main-content %}
